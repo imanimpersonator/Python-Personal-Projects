@@ -35,8 +35,6 @@ i = snames["Customer Name"].value_counts()
 # tried this to split names by surname
 # surname = df[df["Customer Name"].apply(lambda x: x.split(" "))[1]]
 
-
-
 # But this ended up working better:
 df['FirstName'] = df['Customer Name'].str.split().str[0]
 df["LastName"] = df["Customer Name"].str.split().str[1]
@@ -49,11 +47,11 @@ f = df.query('Segment == ["Consumer", "Corporate"]')
 fname = df["FirstName"].value_counts()
 lname = df["LastName"].value_counts()
 
-
+# Shows average sale based on quantity ordered
 df["Average Total"] = (df["Sales"] / df["Quantity"]).round(2)
 
+# Below steps show summary statistics of given columns, and appends them to the end of the DataFrame
 sum_df = df[["Sales","Quantity","Discount"]].sum()
-
 
 df_sum = pd.DataFrame(data=sum_df).T
 
